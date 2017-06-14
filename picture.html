@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            width: 400px;
+            height: 500px
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="" value="">
+        <button>提交</button>
+    </div>
+    <img src="img/123.jpg" alt="">
+    <canvas id="canvas" width="500px" height="500px"></canvas>
+</body>
+<script src="jquery.js"></script>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var dom = document.getElementsByTagName("div")[0];
+    var input = document.getElementsByTagName("input")[0];
+    var btn = document.getElementsByTagName("button")[0];
+    var img = document.getElementsByTagName("img")[0];
+
+    canvas.onclick = function(ev) {
+        var x = ev.offsetX;
+        var y = ev.offsetY;
+    }
+    btn.onclick = function() {
+        if (input.value.length > 0) {
+            ctx.drawImage(img, 0, 0, 640, 735, 10, 10, 400, 500)
+            dom.style = "display:none";
+            img.style = "display:none";
+            ctx.beginPath();
+            ctx.fillStyle = "#000";
+            ctx.font = "20px 微软雅黑";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(input.value, 140, 150);
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.fillStyle = "#000";
+            ctx.font = "14px 微软雅黑";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(input.value, 164, 444);
+            ctx.closePath();
+        }
+    };
+
+    var fullQuality = canvas.toDataURL("image/jpeg", 1.0);
+    var mediumQuality = canvas.toDataURL("image/jpeg", 0.5);
+    var lowQuality = canvas.toDataURL("image/jpeg", 0.1);
+    var dataURL = canvas.toDataURL();
+    console.log(dataURL);
+    window.open(canvas.toDataURL());
+</script>
+
+</html>
